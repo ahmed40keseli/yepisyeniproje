@@ -3,17 +3,24 @@ const Category = require('../models/category');
 
 
 exports.getAddProduct = (req, res, next) => {
-    Category.getAll()
-        .then((categories) => {
-            res.render('admin/add-product', {
-                title: 'New Product',
-                path: '/admin/add-product',
-                categories: categories[0]
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    console.log("fonksityon çalıtı")
+    const categories = Category.getAll();
+    res.render('admin/add-product', {
+        title: 'New Product',
+        path: '/admin/add-product',
+        categories: categories
+    });
+    // Category.getAll()
+    //     .then((categories) => {
+    //         res.render('admin/add-product', {
+    //             title: 'New Product',
+    //             path: '/admin/add-product',
+    //             categories: categories[0]
+    //         });
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
 
 }
 
