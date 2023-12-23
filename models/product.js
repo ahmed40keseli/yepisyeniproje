@@ -1,16 +1,28 @@
-const database1 = require('../utility/database');
+const Sequelize = require('sequelize');
 
-module.exports = class Product {
+const sequelize = require('../utility/database');
 
-    constructor(authorname, bookname, categoryid) {
-        this.authorname = authorname;
-        this.bookname = bookname;
-        this.categoryid = categoryid;
-    }
+const Product = sequelize.define('product', {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    authorname: { 
+        type:Sequelize.STRING,
+        allowNull:true 
+    },
+    bookname:{ 
+        type:Sequelize.STRING,
+        allowNull:true 
+    },
+    // categoryid:{ 
+    //     type:Sequelize.INTEGER,
+    //     allowNull:false 
+    // },
+});
 
+console.log(Product);
 
-    saveproduct() {
-        return database1.execute('INSERT INTO products (authorname,bookname,categoryid) VALUES (?,?,?) ', [this.authorname,this.bookname,this.categoryid]);
-    }
-
-}   
+module.exports = Product;

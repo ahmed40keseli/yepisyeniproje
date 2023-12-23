@@ -1,39 +1,110 @@
 const Product = require('../models/product');
 const Category = require('../models/category');
 
+exports.getProducts = (req, res, next) => {
+    Product.getAll()
+        .then(products => {
+            res.render('admin/products', {
+                title: 'Admin Products',
+                products: products[0],
+                path: '/admin/products',
+                action: req.query.action
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 
 exports.getAddProduct = (req, res, next) => {
-    console.log("fonksityon çalıtı")
-    const categories = Category.getAll();
     res.render('admin/add-product', {
         title: 'New Product',
-        path: '/admin/add-product',
-        categories: categories
+        path: '/admin/add-product'
     });
-    // Category.getAll()
-    //     .then((categories) => {
-    //         res.render('admin/add-product', {
-    //             title: 'New Product',
-    //             path: '/admin/add-product',
-    //             categories: categories[0]
-    //         });
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-
 }
 
 exports.postAddProduct = (req, res, next) => {
+
+    const authorname = req.body.authorname;
+    const bookname = req.body.bookname;
+    // const categoryid = req.body.categoryid;
+    /*
+    Product.create({
+        name: name,
+        price: price,
+        imageUrl: imageUrl,
+        description: description
+    })
+        .then(result => {
+            console.log(result);
+            res.redirect('/');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    */
+
+    const prd = Product.build({
+        authorname: authorname,
+        bookname: bookname,
+        // categoryid: categoryid,
+    });
+
+    prd.save()
+        .then(result => {
+            console.log(result);
+            res.redirect('/');
+        })
+        .catch(err => {
+            console.timeLog(err);
+        })
+
+}
+
+exports.getEditProduct = (req, res, next) => {
+
+    Product.getById(req.params.productid)
+        .then((product) => {
+            Category.getAll()
+                .then((categories) => {
+                    console.log(categories);
+                    res.render('admin/edit-product', {
+                        title: 'Edit Product',
+                        path: '/admin/products',
+                        product: product[0][0],
+                        categories: categories[0]
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+exports.postEditProduct = (req, res, next) => {
+
     const product = new Product();
 
-    product.authorname = req.body.authorname;
-    product.bookname = req.body.bookname;
-    product.categoryid = req.body.categoryid;
+    const authorname = req.body.authorname;
+    const bookname = req.body.bookname;
+    // const categoryid = req.body.categoryid;
 
-    product.saveProduct()
+    Product.Update(product)
         .then(() => {
-            res.redirect('/');
+            res.redirect('/admin/products?action=edit');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+exports.postDeleteProduct = (req, res, next) => {
+    Product.DeleteById(req.body.productid)
+        .then(() => {
+            res.redirect('/admin/products?action=delete');
         })
         .catch((err) => {
             console.log(err);

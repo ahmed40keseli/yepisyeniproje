@@ -20,13 +20,25 @@
     <div class="container mt-5">
         <h1>Record New Book</h1>
         <form action="/admin/add-product" method="POST">
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="authorName" class="form-label">Author Name</label>
                 <input type="text" class="form-control" id="authorName" placeholder="Enter author's name">
+            </div> -->
+            <div class="form-group row">
+                <label for="authorName" class="col-sm-2 col-form-label">authorName</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="authorName" name="authorName">
+                </div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="bookName" class="form-label">Book Name</label>
                 <input type="text" class="form-control" id="bookName" placeholder="Enter book's name">
+            </div> -->
+            <div class="form-group row">
+                <label for="bookName" class="col-sm-2 col-form-label">bookName</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="bookName" name="bookName">
+                </div>
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
@@ -39,8 +51,11 @@
                     <option value="science fiction">science fiction</option>
                 </select>
             </div>
-            <!-- <button type="submit" class="btn btn-primary">Save</button> -->
-            <input type="submit" value="Save Product" class="btn btn-primary">
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="submit" class="btn btn-primary" value="Save Product">
+                </div>
+            </div>
         </form>
     </div>
 
