@@ -23,6 +23,6 @@ const Product = sequelize.define('product', {
     // },
 });
 
-console.log(Product);
+console.log('product tablo kayıt');
 
 module.exports = Product;

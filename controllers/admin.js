@@ -21,44 +21,34 @@ exports.getAddProduct = (req, res, next) => {
         title: 'New Product',
         path: '/admin/add-product'
     });
+    console.log('get add-product');
 }
 
 exports.postAddProduct = (req, res, next) => {
+    console.log('---------------<<<<<<<<<<<<<<post add-product');
 
     const authorname = req.body.authorname;
+    console.log(`---------------<<<<<<<<<<<<<<post ${authorname}`);
     const bookname = req.body.bookname;
-    // const categoryid = req.body.categoryid;
-    /*
-    Product.create({
-        name: name,
-        price: price,
-        imageUrl: imageUrl,
-        description: description
-    })
-        .then(result => {
-            console.log(result);
-            res.redirect('/');
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    */
+    console.log(`---------------<<<<<<<<<<<<<<post ${bookname}`);
 
     const prd = Product.build({
         authorname: authorname,
         bookname: bookname,
         // categoryid: categoryid,
     });
+    console.log(`---------------<<<<<<<<<<<<<<post ${prd}`);
 
     prd.save()
         .then(result => {
-            console.log(result);
-            res.redirect('/');
+            console.log(`---------------<<<<<<<<<<<<<<post ${result}`);
+            res.redirect('/admin');
         })
         .catch(err => {
             console.timeLog(err);
-        })
+            res.status(500).send('Error occurred while saving data');
 
+        })
 }
 
 exports.getEditProduct = (req, res, next) => {
@@ -88,8 +78,8 @@ exports.postEditProduct = (req, res, next) => {
 
     const product = new Product();
 
-    const authorname = req.body.authorname;
-    const bookname = req.body.bookname;
+    product.authorname = req.body.authorname;
+    product.bookname = req.body.bookname;
     // const categoryid = req.body.categoryid;
 
     Product.Update(product)

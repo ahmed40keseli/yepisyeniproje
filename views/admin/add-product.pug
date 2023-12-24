@@ -1,86 +1,35 @@
-//- doctype html
-//- html(lang="en")
-//-   head
-//-     // Required meta tags
-//-     meta(charset="utf-8")
-//-     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
-//-     link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.6.3/css/all.css", integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/", crossorigin="anonymous")
-//-     // Bootstrap CSS
-//-     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS", crossorigin="anonymous")
-//-     link(rel="stylesheet", href="/css/style.css")
-//-     title E-ticaret
-//-   body
-//-     .container.mt-5
-//-       h1 Record New Book
-//-       form(action="/admin/add-product", method="POST")
-//-         .mb-3
-//-           label(for="authorName", class="form-label") Author Name
-//-           input(type="text", class="form-control", id="authorName", placeholder="Enter author's name")
-//-         .mb-3
-//-           label(for="bookName", class="form-label") Book Name
-//-           input(type="text", class="form-control", id="bookName", placeholder="Enter book's name")
-//-         .mb-3
-//-           label(for="category", class="form-label") Category
-//-           select(class="form-select", id="category")
-//-             option(selected) Select a category
-//-             option(value="autobiography") autobiography
-//-             option(value="biography") biography
-//-             option(value="novel") novel
-//-             option(value="religious") religious
-//-             option(value="science fiction") science fiction
-//-         button(type="submit", class="btn btn-primary") Save
-//-         // input(type="submit", value="Save Product", class="btn btn-primary")
+extends ../layouts/main-layout.pug
 
-//-     script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", crossorigin="anonymous")
-//-     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js", integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut", crossorigin="anonymous")
-//-     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js", integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k", crossorigin="anonymous")
+block styles
+  link(rel="stylesheet" href="/css/forms.css")
 
+block content
+  .container.mt-5
+    h1 Record New Book
+    form(action="/admin/add-product" method="POST")
+      //- Author Name
+      .form-group.row
+        label.col-sm-2.col-form-label(for="authorname") authorName
+        .col-sm-10
+          input.form-control(type="text"  name="authorname")
 
-doctype html
-html(lang="en")
+      //- Book Name
+      .form-group.row
+        label.col-sm-2.col-form-label(for="bookname") bookName
+        .col-sm-10
+          input.form-control(type="text" name="bookname")
 
-  head
-    // Required meta tags
-    meta(charset="utf-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
-    link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.6.3/css/all.css", integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/", crossorigin="anonymous")
-    // Bootstrap CSS
-    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS", crossorigin="anonymous")
-    link(rel="stylesheet", href="/css/style.css")
+      //- Category
+      //- .mb-3
+      //-   label(for="category") Category
+      //-   select.form-select(id="category")
+      //-     option(selected) Select a category
+      //-     option(value="autobiography") autobiography
+      //-     option(value="biography") biography
+      //-     option(value="novel") novel
+      //-     option(value="religious") religious
+      //-     option(value="science fiction") science fiction
 
-    title E-ticaret
-
-  body
-    .container.mt-5
-      h1 Record New Book
-      form(action="/admin/add-product", method="POST")
-        //- Author Name
-        .form-group.row
-          label.col-sm-2.col-form-label(for="authorName") authorName
-          .col-sm-10
-            input.form-control(type="text", id="authorName", name="authorName")
-
-        //- Book Name
-        .form-group.row
-          label.col-sm-2.col-form-label(for="bookName") bookName
-          .col-sm-10
-            input.form-control(type="text", id="bookName", name="bookName")
-
-        //- Category
-        .mb-3
-          label(for="category") Category
-          select.form-select(id="category")
-            option(selected) Select a category
-            option(value="autobiography") autobiography
-            option(value="biography") biography
-            option(value="novel") novel
-            option(value="religious") religious
-            option(value="science fiction") science fiction
-
-        .form-group.row
-          .col-sm-10.offset-sm-2
-            input.btn.btn-primary(type="submit", value="Save Product")
-
-    script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", crossorigin="anonymous")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js", integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut", crossorigin="anonymous")
-    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js", integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k", crossorigin="anonymous")
+      .form-group.row
+        .col-sm-10.offset-sm-2
+          input.btn.btn-primary(type="submit" value="Save Product")
