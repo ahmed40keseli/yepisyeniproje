@@ -6,7 +6,7 @@ exports.getProducts = (req, res, next) => {
         .then(products => {
             res.render('admin/products', {
                 title: 'Admin Products',
-                products: products[0],
+                products: products,
                 path: '/admin/products',
                 action: req.query.action
             });
@@ -17,38 +17,33 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.getAddProduct = (req, res, next) => {
-    res.render('admin/add-product', {
-        title: 'New Product',
-        path: '/admin/add-product'
-    });
-    console.log('get add-product');
+    Category.findAll()
+        .then((categories) => {
+            console.log(categories);
+            res.render('admin/add-product', {
+                title: 'New Product',
+                path: '/admin/add-product',
+                categories:categories
+            });
+        })
 }
 
 exports.postAddProduct = (req, res, next) => {
-    console.log('---------------<<<<<<<<<<<<<<post add-product');
-
     const authorname = req.body.authorname;
-    console.log(`---------------<<<<<<<<<<<<<<post ${authorname}`);
     const bookname = req.body.bookname;
-    console.log(`---------------<<<<<<<<<<<<<<post ${bookname}`);
+    const categoryid = req.body.categoryid;
 
-    const prd = Product.build({
+    Product.create({
         authorname: authorname,
         bookname: bookname,
-        // categoryid: categoryid,
-    });
-    console.log(`---------------<<<<<<<<<<<<<<post ${prd}`);
-
-    prd.save()
+        categoryId: categoryid,
+    })
         .then(result => {
-            console.log(`---------------<<<<<<<<<<<<<<post ${result}`);
             res.redirect('/admin');
         })
         .catch(err => {
-            console.timeLog(err);
-            res.status(500).send('Error occurred while saving data');
-
-        })
+            console.log(err);
+        });
 }
 
 exports.getEditProduct = (req, res, next) => {
@@ -61,8 +56,8 @@ exports.getEditProduct = (req, res, next) => {
                     res.render('admin/edit-product', {
                         title: 'Edit Product',
                         path: '/admin/products',
-                        product: product[0][0],
-                        categories: categories[0]
+                        product: product,
+                        categories: categories
                     });
                 })
                 .catch((err) => {
@@ -76,20 +71,24 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
 
-    const product = new Product();
+    const authorname = req.body.authorname;
+    const bookname = req.body.bookname;
+    const categoryid = req.body.categoryid;
 
-    product.authorname = req.body.authorname;
-    product.bookname = req.body.bookname;
-    // const categoryid = req.body.categoryid;
-
-    Product.Update(product)
-        .then(() => {
+    Product.findByPk(id)
+        .then(product => {
+            product.authorname = authorname;
+            product.bookname = bookname;
+            product.categoryId = categoryid;
+            return product.save();
+        })
+        .then(result => {
+            console.log('updated');
             res.redirect('/admin/products?action=edit');
         })
-        .catch((err) => {
-            console.log(err);
-        });
+        .catch(err => console.log(err));
 }
+
 
 exports.postDeleteProduct = (req, res, next) => {
     Product.DeleteById(req.body.productid)

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const path = require('path');
+// const path = require('path');
 
 const adminController = require('../controllers/admin');
 
@@ -9,16 +9,13 @@ const adminController = require('../controllers/admin');
 router.get('/', (req, res, next) => {
     res.render('admin', {
         title: 'Admin',
-        path: '/admin/indext'
+        path: '/admin/index'
     });
-    console.log('admin yönlendirme deneme1');
 });
 
 router.get('/add-product', adminController.getAddProduct);
 
 router.post('/add-product', adminController.postAddProduct);
-
-console.log('admin yönlendirme deneme');
 
 module.exports = router;
 

@@ -11,18 +11,12 @@ const Product = sequelize.define('product', {
     },
     authorname: { 
         type:Sequelize.STRING,
-        allowNull:true 
+        allowNull:false 
     },
     bookname:{ 
         type:Sequelize.STRING,
-        allowNull:true 
+        allowNull:false 
     },
-    // categoryid:{ 
-    //     type:Sequelize.INTEGER,
-    //     allowNull:false 
-    // },
 });
-
-console.log('product tablo kayıt');
 
 module.exports = Product;

@@ -8,10 +8,13 @@ const Category = sequelize.define('category', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
-    },
-    name: Sequelize.STRING,
+    },name: Sequelize.STRING,
+    // name: { 
+    //     type:Sequelize.STRING,
+    //     allowNull:true 
+    // }
 });
 
-console.log('category tablo kayıt');
+console.log(`1""1"1"1"1"1"111111111111"1"1"1"1"1${Category}`);
 
 module.exports = Category;   

@@ -17,13 +17,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
+const Category = require('./models/category');
+const Product = require('./models/product');
+
+
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', 'error/404.pug'));
 });
 
-sequelize.sync()
-    .then(result => {
-        console.log(result);
+Product.belongsTo(Category,{
+    foreignKey:{
+        allowNull:false 
+    }
+});
+Category.hasMany(Product);
+
+sequelize
+    // .sync({ force: true })
+    .sync()
+    .then(() => {
+        Category.count()
+            .then(count=> {
+                if (count===0){
+                    Category.bulkCreate([
+                        { name: 'roman' },
+                        { name: 'otobiyografi' },
+                        { name: 'biyografi' },  
+                    ]);
+                }
+            })
     })
     .catch(err => {
         console.log(err);
