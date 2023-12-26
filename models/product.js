@@ -19,4 +19,6 @@ const Product = sequelize.define('product', {
     },
 });
 
+console.log(`model product ><><><><><><>"1${Product}`);
+
 module.exports = Product;

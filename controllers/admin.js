@@ -19,20 +19,21 @@ exports.getProducts = (req, res, next) => {
 exports.getAddProduct = (req, res, next) => {
     Category.findAll()
         .then((categories) => {
-            console.log(categories);
+            console.log(`kanak get add pro ${categories.id}`);
             res.render('admin/add-product', {
                 title: 'New Product',
                 path: '/admin/add-product',
-                categories:categories
+                categories: categories
             });
         })
 }
+
 
 exports.postAddProduct = (req, res, next) => {
     const authorname = req.body.authorname;
     const bookname = req.body.bookname;
     const categoryid = req.body.categoryid;
-
+    console.log(`sdasdasdadadadadadcategoryid ${categoryid}`)
     Product.create({
         authorname: authorname,
         bookname: bookname,
@@ -45,6 +46,7 @@ exports.postAddProduct = (req, res, next) => {
             console.log(err);
         });
 }
+
 
 exports.getEditProduct = (req, res, next) => {
 
@@ -74,12 +76,12 @@ exports.postEditProduct = (req, res, next) => {
     const authorname = req.body.authorname;
     const bookname = req.body.bookname;
     const categoryid = req.body.categoryid;
-
+    
     Product.findByPk(id)
         .then(product => {
             product.authorname = authorname;
             product.bookname = bookname;
-            product.categoryId = categoryid;
+            product.categoryId= categoryid;
             return product.save();
         })
         .then(result => {

@@ -18,7 +18,9 @@ app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
 const Category = require('./models/category');
+console.log(`categori tablosuuuuuuu ${Category}`);
 const Product = require('./models/product');
+console.log(`ürün tablosuuuuuuuu${Product}`);
 
 
 app.use((req, res) => {
@@ -50,6 +52,7 @@ sequelize
     .catch(err => {
         console.log(err);
     });
+console.log(`liste çekiliyorrrrrrr${sequelize}`);
 
 app.listen(3000, () => {
     console.log('listening on port 3000');
