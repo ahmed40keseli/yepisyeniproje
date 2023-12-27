@@ -2,21 +2,19 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../utility/database');
 
-const Product = sequelize.define('product', {
+const Writer = sequelize.define('writer', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
-    },
-    // authorname: { 
+    },name: Sequelize.STRING,
+    // name: { 
     //     type:Sequelize.STRING,
-    //     allowNull:false 
-    // },
-    bookname:{ 
-        type:Sequelize.STRING,
-        allowNull:false 
-    },
+    //     allowNull:true 
+    // }
 });
 
-module.exports = Product;
+console.log('glşösşgösig '+ Writer);
+
+module.exports = Writer;   

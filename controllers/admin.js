@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Category = require('../models/category');
+const Writer = require ('../models/writer');
 
 exports.getProducts = (req, res, next) => {
     Product.getAll()
@@ -17,25 +18,34 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.getAddProduct = (req, res, next) => {
+    // Promise.all([Category.findAll(), Writer.findAll()])
     Category.findAll()
-        .then((categories) => {
-            console.log(`kanak get add pro ${categories.id}`);
+        .then((categories,writers) => {
             res.render('admin/add-product', {
                 title: 'New Product',
                 path: '/admin/add-product',
-                categories: categories
+                categories: categories,
+                // writers : writers
             });
         })
+        .catch(err => {
+            console.error('Error:', err);
+            res.status(500).send('Internal Server Error');
+        });
 }
 
 
 exports.postAddProduct = (req, res, next) => {
-    const authorname = req.body.authorname;
+    const writerid = req.body.writerid
+    function writertransfer(){
+        writerid === writerid
+    }
+    // const writerid = req.body.writerid;
+    writertransfer()
     const bookname = req.body.bookname;
     const categoryid = req.body.categoryid;
-    console.log(`sdasdasdadadadadadcategoryid ${categoryid}`)
     Product.create({
-        authorname: authorname,
+        writerId: writerid,
         bookname: bookname,
         categoryId: categoryid,
     })
@@ -73,13 +83,13 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
 
-    const authorname = req.body.authorname;
+    const writerid = req.body.writerid;
     const bookname = req.body.bookname;
     const categoryid = req.body.categoryid;
     
     Product.findByPk(id)
         .then(product => {
-            product.authorname = authorname;
+            product.writerId = writerid;
             product.bookname = bookname;
             product.categoryId= categoryid;
             return product.save();

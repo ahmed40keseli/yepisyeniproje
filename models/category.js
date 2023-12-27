@@ -15,6 +15,4 @@ const Category = sequelize.define('category', {
     // }
 });
 
-console.log(`model category dmadflafaf${Category}`);
-
 module.exports = Category;   

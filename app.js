@@ -18,14 +18,38 @@ app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
 const Category = require('./models/category');
-console.log(`categori tablosuuuuuuu ${Category}`);
 const Product = require('./models/product');
-console.log(`ürün tablosuuuuuuuu${Product}`);
-
+const Writer = require('./models/writer');
 
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', 'error/404.pug'));
 });
+
+Product.belongsTo(Writer,{
+    foreignKey:{
+        allowNull:false
+    }
+});
+Writer.hasMany(Product)
+
+sequelize
+    .sync()
+    .then(() => {
+        Writer.count()
+            .then(count=> {
+                if (count===0){
+                    Writer.bulkCreate([
+                        { name: 'Cemil meriç ' },
+                        { name: 'Imam gazali' },
+                        { name: 'Ahmet ümit' },  
+                    ]);
+                }
+            })
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
 
 Product.belongsTo(Category,{
     foreignKey:{
@@ -52,7 +76,6 @@ sequelize
     .catch(err => {
         console.log(err);
     });
-console.log(`liste çekiliyorrrrrrr${sequelize}`);
 
 app.listen(3000, () => {
     console.log('listening on port 3000');

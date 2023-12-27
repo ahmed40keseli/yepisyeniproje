@@ -9,26 +9,15 @@ block content
     form(action="/admin/add-product" method="POST")
       //- Author Name
       .form-group.row
-        label.col-sm-2.col-form-label(for="authorname") authorName
+        label.col-sm-2.col-form-label(for="writerid") authorName
         .col-sm-10
-          input.form-control(type="text"  name="authorname")
+          input.form-control(type="text"  name="writerid")
 
       //- Book Name
       .form-group.row
         label.col-sm-2.col-form-label(for="bookname") bookName
         .col-sm-10
           input.form-control(type="text" name="bookname")
-
-      //- Category
-      //- .mb-3
-      //-   label(for="category") Category
-      //-   select.form-select(id="category")
-      //-     option(selected) Select a category
-      //-     option(value="autobiography") autobiography
-      //-     option(value="biography") biography
-      //-     option(value="novel") novel
-      //-     option(value="religious") religious
-      //-     option(value="science fiction") science fiction
 
       .form-group.row
             label(for="categoryid").col-sm-2.col-form-label Category
