@@ -17,6 +17,14 @@ const Product = sequelize.define('product', {
         type:Sequelize.STRING,
         allowNull:false 
     },
+    writerId: {
+        type: Sequelize.INTEGER, // Assuming writerId is an integer
+        allowNull: false,
+        references: {
+            model: 'writers', // Make sure the table name is correct
+            key: 'id'
+        }
+    },    
 });
 
 module.exports = Product;

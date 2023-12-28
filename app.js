@@ -25,12 +25,13 @@ app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', 'error/404.pug'));
 });
 
-Product.belongsTo(Writer,{
-    foreignKey:{
-        allowNull:false
+Product.belongsTo(Writer, {
+    foreignKey: {
+        allowNull: false
     }
 });
-Writer.hasMany(Product)
+
+Writer.hasMany(Product);
 
 sequelize
     .sync()
@@ -46,17 +47,18 @@ sequelize
                 }
             })
     })
-    .catch(err => {
-        console.log(err);
+    .catch(err => { /* catch elsenin karşılığı olarak düşünülebilir  */
+        console.log(err); /* hata ayıklama satırı  */
     });
 
 
-Product.belongsTo(Category,{
+
+Product.belongsTo(Category,{ /* product da bir tane category vardır */
     foreignKey:{
-        allowNull:false 
+        allowNull:false /* değerin boş gitmemesini sağlar */
     }
 });
-Category.hasMany(Product);
+Category.hasMany(Product); /* kategoride birçok product vardır  */
 
 sequelize
     // .sync({ force: true })
