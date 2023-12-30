@@ -1,81 +1,86 @@
-// const Product = require('../models/product');
-// const Category = require('../models/category');
+const Product = require('../models/product');
+const Category = require('../models/category');
 
-// exports.getIndex = (req, res, next) => {
-//     const categories = Category.getAll();
+exports.getIndex = (req, res, next) => {
+    const categories = Category.getAll();
 
-//     Product.getAll()
-//         .then(products => {
-//             res.render('shop/index', {
-//                 title: 'Shopping',
-//                 products: products[0],
-//                 categories: categories,
-//                 path: '/'
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// }
+    Product.getAll()
+        .then(products => {
+            res.render('user/index', {
+                title: 'entrusting',
+                products: products[0],
+                categories: categories,
+                path: '/'
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+console.log(this.getIndex);
+}
 
-// exports.getProducts = (req, res, next) => {
-//     const categories = Category.getAll();
+exports.getProducts = (req, res, next) => {
+    const categories = Category.getAll();
 
-//     Product.getAll()
-//         .then(products => {
-//             res.render('shop/products', {
-//                 title: 'Products',
-//                 products: products[0],
-//                 categories: categories,
-//                 path: '/'
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// }
+    Product.getAll()
+        .then(products => {
+            res.render('user/products', {
+                title: 'Products',
+                products: products[0],
+                categories: categories,
+                path: '/'
+            });
+        console.log(getAll());
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+console.log(this.getProduct);       
+}
 
-// exports.getProductsByCategoryId = (req, res, next) => {
-//     const categoryid = req.params.categoryid;
-//     const products = Product.getProductsByCategoryId(categoryid);
-//     const categories = Category.getAll();
+exports.getProductsByCategoryId = (req, res, next) => {
+    const categoryid = req.params.categoryid;
+    const products = Product.getProductsByCategoryId(categoryid);
+    const categories = Category.getAll();
 
-//     res.render('shop/products', {
-//         title: 'Products',
-//         products: products,
-//         categories: categories,
-//         selectedCategory: categoryid,
-//         path: '/products'
-//     });
-// }
+    res.render('user/products', {
+        title: 'Products',
+        products: products,
+        categories: categories,
+        selectedCategory: categoryid,
+        path: '/products'
+    });
+console.log(this.getProductsByCategoryId);
+}
 
 
 
 
-// exports.getProduct = (req, res, next) => {
-//     Product.getById(req.params.productid)
-//         .then((product) => {
-//             res.render('shop/product-detail', {
-//                 title: product[0][0].name,
-//                 product: product[0][0],
-//                 path: '/products'
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// }
+exports.getProduct = (req, res, next) => {
+    Product.getById(req.params.productid)
+        .then((product) => {
+            res.render('user/product-detail', {
+                title: product[0][0].name,
+                product: product[0][0],
+                path: '/products'
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+console.log(this.getProduct);        
+}
 
 
 // exports.getCart = (req, res, next) => {
-//     res.render('shop/cart', {
+//     res.render('user/cart', {
 //         title: 'Cart',
 //         path: '/cart'
 //     });
 // }
 
 // exports.getOrders = (req, res, next) => {
-//     res.render('shop/orders', {
+//     res.render('user/orders', {
 //         title: 'Orders',
 //         path: '/orders'
 //     });

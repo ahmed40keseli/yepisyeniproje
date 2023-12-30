@@ -8,4 +8,6 @@ const sequelize = new Sequelize('node2-app','root','Ah123?kkk',{
     }
 });
 
+console.log('bağlantı oluşturuldu');
+
 module.exports = sequelize;

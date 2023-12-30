@@ -2,12 +2,15 @@ extends ../layouts/main-layout.pug
 
 block content 
     if (action !== 'undefined' && action === 'delete')
+        //- koşul oluşturulmuş
         div.alert.alert-danger The product has been deleted.
 
     if (action !== 'undefined' && action === 'edit')
+        //- koşul oluşturulmuş
         div.alert.alert-success The product has been updated.
     
     if products.length > 0
+        //- eğer ürün var ise yani ürün hakkında herhangi veri girilmiş mi?
         table.table.table-bordered
             thead
                 tr
@@ -24,9 +27,13 @@ block content
                         td #{product.price} TL
                         td 
                             a.btn.btn-primary.btn-sm.mr-2(href=`/admin/products/${product.id}`) Edit
+                            //- edit işlemini tetikleyen buton
 
                             form(action='/admin/delete-product' method='POST')
                                 input(type='hidden' name='productid' value=`${product.id}`)
+                                //- değer girilecek boşluk 'silinecek ürün seçilir'
                                 button(type='submit').btn.btn-danger.btn-sm Delete
+                                //- silme işlemini gerçekleştiren buton
     else
-        h1 No Products                        
+        h1 No Products               
+        //- eğer şartlar sağlanmaz ise 'no products' yazar  

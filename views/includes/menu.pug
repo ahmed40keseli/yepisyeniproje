@@ -1,4 +1,8 @@
 .list-group
-        if categories.length > 0
+        if categories.length > 0 
+                //- Bu, dizide kategorilerin olup olmadığını kontrol eder
                 each category in categories
-                        a(href=`/categories/${category.id}` class=category.id===selectedCategory?"list-group-item active":"list-group-item") #{category.name}                     
+                        //-  Bu, dizideki her biri boyunca yinelenen bir döngüdür categories.
+                        a(href=`/categories/${category.id}` class=category.id===selectedCategory?"list-group-item active":"list-group-item") #{category.name}
+                        //- href veri nereden çekilecek ise orayı tarif eder
+                        //- #{category.name} = Bu, 'name' kategorinin özelliğini genellikle bağlantının görünür metnini temsil eden bağlantı etiketinin içine ekler.

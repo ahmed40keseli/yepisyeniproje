@@ -1,30 +1,28 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize'); /* ORM için kullanılan paketi dahil ediyoruz  */
 
-const sequelize = require('../utility/database');
+const sequelize = require('../utility/database'); /* database bilgilerinin bulunduğu dosyayı dahil ediyoruz  */
 
-const Product = sequelize.define('product', {
+const Product = sequelize.define('product', { /* sequlize.define veri tabanında tablo oluştururuken kullanılır ve veri türlerini vs. belirler */
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    // authorname: { 
-    //     type:Sequelize.STRING,
-    //     allowNull:false 
-    // },
     bookname:{ 
         type:Sequelize.STRING,
         allowNull:false 
     },
     writerId: {
-        type: Sequelize.INTEGER, // Assuming writerId is an integer
+        type: Sequelize.INTEGER, 
         allowNull: false,
         references: {
-            model: 'writers', // Make sure the table name is correct
+            model: 'writers',
             key: 'id'
         }
     },    
 });
 
-module.exports = Product;
+console.log(Product);           
+
+module.exports = Product; /* public olması için izin veriyoruz */

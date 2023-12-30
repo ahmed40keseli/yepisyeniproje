@@ -2,28 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 const path = require('path');
+const userController = require('../controllers/user');
 
 router.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../', 'views', 'shop/index.pug'));
+    res.sendFile(path.join(__dirname, 'views', 'user/index.pug'));
 });
 
+router.get('/', userController.getIndex);
+
+router.get('/products', userController.getProducts);
+
+router.get('/products/:productid', userController.getProduct);
+
+router.get('/categories/:categoryid', userController.getProductsByCategoryId);
+
+// router.get('/cart', userController.getCart);
+
+// router.get('/orders', userController.getOrders);
+
 module.exports = router;
-
-// const express = require('express');
-// const router = express.Router();
-
-// const shopController = require('../controllers/shop');
-
-// router.get('/', shopController.getIndex);
-
-// router.get('/products', shopController.getProducts);
-
-// router.get('/products/:productid', shopController.getProduct);
-
-// router.get('/categories/:categoryid', shopController.getProductsByCategoryId);
-
-// router.get('/cart', shopController.getCart);
-
-// router.get('/orders', shopController.getOrders);
-
-// module.exports = router;

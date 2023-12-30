@@ -18,14 +18,12 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.getAddProduct = (req, res, next) => {
-    // Promise.all([Category.findAll(), Writer.findAll()])
     Category.findAll() /* tablonun tamamını getirir  */
         .then((categories,writers) => {
             res.render('admin/add-product', {
                 title: 'New Product',
                 path: '/admin/add-product',
                 categories: categories,
-                // writers : writers
             });
         })
         .catch(err => {
@@ -42,31 +40,18 @@ exports.postAddProduct = (req, res, next) => {
     Writer.findOrCreate({
         where: { name: writerName }
     }).then(([writer, created]) => {
-        // writer variable holds the found or created writer
         Product.create({
-            writerId: writer.id, // Use the writer's ID in the product creation
+            writerId: writer.id, 
             bookname: bookname,
             categoryId: categoryid,
         }).then(result => {
-            res.redirect('/admin');
+            res.redirect('/admin'); /* sayfa ile işimiz bittiğinde bizi admin ana sayfasına(/admin) yönlendirir */
         }).catch(err => {
             console.log(err);
         });
     }).catch(err => {
         console.log(err);
     });
-    
-    // Product.create({ 
-    //     writerId: writerid,
-    //     bookname: bookname,
-    //     categoryId: categoryid,
-    // })
-    //     .then(result => {
-    //         res.redirect('/admin'); /* sayfa ile işimiz bittiğinde bizi admin ana sayfasına(/admin) yönlendirir */
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     });
 }
 
 

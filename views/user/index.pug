@@ -1,0 +1,24 @@
+extends ../layouts/main-layout.pug 
+//- bir üst klasöre çıkıp main-layout.pug dosyasına girer
+//- Pug'da extendsanahtar kelime bir şablon miras yapısı oluşturmak için kullanılır. 
+//- Bir şablon dosyasının başka bir şablon dosyasının düzenini veya yapısını devralmasına olanak tanır.
+
+include ../mixins/createProduct.pug
+//- Pug'da includeanahtar kelime, başka bir dosyadan içerik çekmek ve onu işlenmekte olan mevcut Pug dosyasına eklemek için kullanılır. 
+//- Kodunuzu daha küçük, yeniden kullanılabilir bileşenlere bölerek ve gerektiğinde bunları dahil ederek modülerleştirmenin bir yoludur.
+
+block content 
+    .row
+        .col-md-3
+            include ../includes/menu.pug
+
+        .col-md-9
+
+            include ../includes/slider.pug
+            
+            .row
+                if products.length > 0
+                    each product in products
+                        +createProduct(product)
+                else
+                    h1 No Products
