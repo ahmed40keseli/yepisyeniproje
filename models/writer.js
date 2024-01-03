@@ -11,4 +11,6 @@ const Writer = sequelize.define('writer', { /* sequlize.define veri tabanında t
     },name: Sequelize.STRING,
 });
 
+console.log(Writer);
+
 module.exports = Writer; /* public olması için izin veriyoruz */

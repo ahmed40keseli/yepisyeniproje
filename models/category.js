@@ -11,4 +11,6 @@ const Category = sequelize.define('category', { /* sequlize.define veri tabanın
     },name: Sequelize.STRING,
 });
 
+console.log(Category);
+
 module.exports = Category; /* public olması için izin veriyoruz */   

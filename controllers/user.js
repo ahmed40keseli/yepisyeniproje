@@ -2,13 +2,14 @@ const Product = require('../models/product');
 const Category = require('../models/category');
 
 exports.getIndex = (req, res, next) => {
-    const categories = Category.getAll();
+    console.log("get index founc run")
+    const categories = Category.findAll();
 
-    Product.getAll()
+    Product.findAll()
         .then(products => {
             res.render('user/index', {
-                title: 'entrusting',
-                products: products[0],
+                title: 'Library',
+                products: products,
                 categories: categories,
                 path: '/'
             });

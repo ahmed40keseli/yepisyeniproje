@@ -6,16 +6,15 @@ const router = express.Router();
 const adminController = require('../controllers/admin');
 
 
-router.get('/', (req, res, next) => {
-    res.render('admin', {
-        title: 'Admin',
-        path: '/admin/index'
-    });
-});
+// router.get('/', (req, res, next) => {
+//     res.render('views/user/index');
+// });
 
 router.get('/add-product', adminController.getAddProduct);
 
 router.post('/add-product', adminController.postAddProduct);
+
+console.log(adminController);
 
 module.exports = router;
 

@@ -8,8 +8,12 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 const adminRoutes = require('./routes/admin');
+console.log('adminRoutes aktarmaaaaaa');
 const userRoutes = require('./routes/user');
+console.log('userRoutes aktarmaaaaaa');
 const sequelize = require('./utility/database');
+console.log('sequelize aktarmaaaaaa');
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,8 +22,11 @@ app.use('/admin', adminRoutes);
 app.use(userRoutes);
 
 const Category = require('./models/category');
+console.log('Category aktarmaaaaaa');
 const Product = require('./models/product');
+console.log('Product aktarmaaaaaa');
 const Writer = require('./models/writer');
+console.log('Writer aktarmaaaaaa');
 
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', 'error/404.pug'));

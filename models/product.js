@@ -8,21 +8,9 @@ const Product = sequelize.define('product', { /* sequlize.define veri tabanında
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
-    },
-    bookname:{ 
-        type:Sequelize.STRING,
-        allowNull:false 
-    },
-    writerId: {
-        type: Sequelize.INTEGER, 
-        allowNull: false,
-        references: {
-            model: 'writers',
-            key: 'id'
-        }
-    },    
+    },bookname: Sequelize.STRING,
 });
 
-console.log(Product);           
+console.log(Product);          
 
 module.exports = Product; /* public olması için izin veriyoruz */
