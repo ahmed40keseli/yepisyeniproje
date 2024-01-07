@@ -1,13 +1,14 @@
 mixin createProduct(product)
     .col-md-4
         .card
-            img(src=`/img/${product.imageUrl}` alt=`${product.description}`).card-img-top
+            //- img(src=`/img/${product.imageUrl}` alt=`${product.description}`).card-img-top
+            //- h4(alt=`${product.description}`).card-h4-top
             .card-body
                 h4.card-title
-                    a(href=`/products/${product.id}`) #{product.name}
+                    a(href=`/products/${product.id}`) #{product.bookname}
                                 
-                small.text-muted
-                    i.fas.fa-lira-sign #{product.price}
+                //- small.text-muted
+                //-     i.fas.fa-lira-sign #{product.price}
                             
             .card-footer.text-center                
 

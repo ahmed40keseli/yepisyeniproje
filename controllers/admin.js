@@ -3,7 +3,7 @@ const Category = require('../models/category'); /* Category modülünü category
 const Writer = require ('../models/writer');
 
 exports.getProducts = (req, res, next) => {
-    Product.getAll()
+    Product.findAll()
         .then(products => {
             res.render('admin/products', {
                 title: 'Admin Products',

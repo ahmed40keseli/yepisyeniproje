@@ -55,8 +55,6 @@ console.log(this.getProductsByCategoryId);
 }
 
 
-
-
 exports.getProduct = (req, res, next) => {
     Product.getById(req.params.productid)
         .then((product) => {
@@ -73,16 +71,16 @@ console.log(this.getProduct);
 }
 
 
-// exports.getCart = (req, res, next) => {
-//     res.render('user/cart', {
-//         title: 'Cart',
-//         path: '/cart'
-//     });
-// }
+exports.getCart = (req, res, next) => {
+    res.render('user/cart', {
+        title: 'Cart',
+        path: '/cart'
+    });
+}
 
-// exports.getOrders = (req, res, next) => {
-//     res.render('user/orders', {
-//         title: 'Orders',
-//         path: '/orders'
-//     });
-// }
+exports.getOrders = (req, res, next) => {
+    res.render('user/orders', {
+        title: 'Orders',
+        path: '/orders'
+    });
+}
