@@ -1,11 +1,11 @@
 extends ../layouts/main-layout.pug
 
 block content 
-    if (action !== 'undefined' && action === 'delete')
+    //- if (action !== 'undefined' && action === 'delete')
         //- koşul oluşturulmuş
         div.alert.alert-danger The product has been deleted.
 
-    if (action !== 'undefined' && action === 'edit')
+    //- if (action !== 'undefined' && action === 'edit')
         //- koşul oluşturulmuş
         div.alert.alert-success The product has been updated.
     
@@ -14,17 +14,17 @@ block content
         table.table.table-bordered
             thead
                 tr
-                    th(style="width:100px;") Image
-                    th Product Name
-                    th(style="width:150px;") Price
+                    //- th(style="width:100px;") Image
+                    th Product bookname 
+                    //- th(style="width:150px;") Price
                     th(style="width:133px;")
             tbody
                 each product in products
                     tr
                         td
                             //- img(src=`/img/${product.imageUrl}` width='80')
-                        td #{product.name}
-                        td #{product.price} TL
+                        td #{product.bookname}
+                        //- td #{product.price} TL
                         td 
                             a.btn.btn-primary.btn-sm.mr-2(href=`/admin/products/${product.id}`) Edit
                             //- edit işlemini tetikleyen buton
