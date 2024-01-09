@@ -8,11 +8,13 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 const adminRoutes = require('./routes/admin');
-console.log('adminRoutes aktarmaaaaaa');
+// console.log('adminRoutes aktarmaaaaaa');
 const userRoutes = require('./routes/user');
-console.log('userRoutes aktarmaaaaaa');
+// console.log('userRoutes aktarmaaaaaa');
 const sequelize = require('./utility/database');
-console.log('sequelize aktarmaaaaaa');
+// console.log('sequelize aktarmaaaaaa');
+const accountRoutes = require('./routes/account');
+
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
+app.use(accountRoutes);
 
 const Category = require('./models/category');
 console.log('Category aktarmaaaaaa');
