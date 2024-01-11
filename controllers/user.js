@@ -10,8 +10,9 @@ exports.getIndex = (req, res, next) => {
             res.render('user/index', {
                 title: 'Library',
                 products: products,
+                path: '/',
                 categories: categories,
-                path: '/'
+                isAuthenticated : req.isAuthenticated
             });
         })
         .catch((err) => {
