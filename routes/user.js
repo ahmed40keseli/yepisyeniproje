@@ -15,9 +15,9 @@ router.get('/products/:productid', userController.getProduct);
 
 router.get('/categories/:categoryid', userController.getProductsByCategoryId);
 
-// router.get('/cart', userController.getCart);
+router.get('/cart', userController.getCart);
 
-// router.get('/orders', userController.getOrders);
+router.get('/orders', userController.getOrders);
 
 console.log(`${userController}yönlendirme yapılıyorrrrrrrrrrrrrrrrrr`);
 
