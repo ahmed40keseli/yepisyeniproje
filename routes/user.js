@@ -19,6 +19,4 @@ router.get('/cart', userController.getCart);
 
 router.get('/orders', userController.getOrders);
 
-console.log(`${userController}yönlendirme yapılıyorrrrrrrrrrrrrrrrrr`);
-
 module.exports = router;

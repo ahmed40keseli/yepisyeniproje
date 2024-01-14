@@ -11,6 +11,4 @@ const Product = sequelize.define('product', { /* sequlize.define veri tabanında
     },bookname: Sequelize.STRING,
 });
 
-console.log(Product);          
-
 module.exports = Product; /* public olması için izin veriyoruz */

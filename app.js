@@ -34,11 +34,8 @@ app.use(userRoutes);
 app.use(accountRoutes);
 
 const Category = require('./models/category');
-console.log('Category aktarmaaaaaa');
 const Product = require('./models/product');
-console.log('Product aktarmaaaaaa');
 const Writer = require('./models/writer');
-console.log('Writer aktarmaaaaaa');
 
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', 'error/404.pug'));
