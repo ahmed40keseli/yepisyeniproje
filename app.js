@@ -3,21 +3,30 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const session = require('express-session')
+
 
 app.set('view engine', 'pug');
 app.set('views', './views');
 
 const adminRoutes = require('./routes/admin');
-// console.log('adminRoutes aktarmaaaaaa');
 const userRoutes = require('./routes/user');
-// console.log('userRoutes aktarmaaaaaa');
 const sequelize = require('./utility/database');
-// console.log('sequelize aktarmaaaaaa');
 const accountRoutes = require('./routes/account');
 
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({
+    secret:'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000
+    }
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use((req, res, next) => {

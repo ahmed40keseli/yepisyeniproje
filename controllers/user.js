@@ -4,7 +4,7 @@ const Category = require('../models/category');
 exports.getIndex = (req, res, next) => {
     console.log("get index founc run")
     const categories = Category.findAll();
-
+    console.log(req.session.isAuthenticated);
     Product.findAll()
         .then(products => {
             res.render('user/index', {
@@ -12,7 +12,7 @@ exports.getIndex = (req, res, next) => {
                 products: products,
                 path: '/',
                 categories: categories,
-                isAuthenticated : req.isAuthenticated
+                isAuthenticated : req.session.isAuthenticated
             });
         })
         .catch((err) => {

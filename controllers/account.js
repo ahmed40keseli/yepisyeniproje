@@ -11,7 +11,8 @@ exports.postLogin = (req, res, next) => {
     const password = req.body.password;
 
     if ((email == 'email@gmail.com') && (password == '1234')) {
-        req.isAuthenticated = true;
+        // req.isAuthenticated = true;
+        req.session.isAuthenticated = true;
         res.redirect('/');
     } else {
         req.isAuthenticated = false;
